@@ -1,4 +1,4 @@
-# s23wb62pullabhatla
+# s23db62pullabhatla
 
 Lab 10 Pullabhatla Saikrishna
 
