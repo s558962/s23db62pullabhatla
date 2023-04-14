@@ -2,24 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome back to #{title} modifed by Saikrishna Pullabhatla
-
-  - results = [{ bags_name: "adidas", bags_type: "gymbag", bags_cost: 300 },{ bags_name: "puma", bags_type: "bagpack", cost: 150 },{ bags_name: "skybags", bags_type: "luggage", bags_cost: 100 }];
-  div.container-fluid 
-    -
-    div.row 
-    -
-    each item, index in results
-        div.col-sm-6
-            h2= item.bags_name, onclick='buy(index)'
-            p= item.bags_type
-            div.row
-                each prop, i in Object.keys(item)
-                    div(col-sm-2,  onclick=`buy(${index})`)
-                        p #{Object.keys(item)[i]}: #{item[prop]}
-
-        
-        script.
-            function buy (index){
-                alert (`You purchased item ${index+1}`)    
-            }
+  -let items = results
+  div(class="container-fluid")
+    div(class="row")
+      each item,index in items
+        div(class="col-sm-2",onClick=`buy(${index})`)
+          p bags_name:  #{item.bags_name}
+          p bags_type:  #{item.bags_type}
+          p bags_cost:  #{item.bags_cost}
+  script.
+    function buy(N) {
+      N=N+1;
+      alert('You purchased item '+N);
+    }

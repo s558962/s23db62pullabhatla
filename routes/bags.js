@@ -1,9 +1,6 @@
 var express = require('express');
+const bags_controlers= require('../controllers/bags');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('bags', { title: 'Search Results of bags' });
-});
-
+/* GET bagss */
+router.get('/', bags_controlers.bags_view_all_Page );
 module.exports = router;
