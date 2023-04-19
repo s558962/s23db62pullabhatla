@@ -1,0 +1,39 @@
+extends layout
+block content
+ h1= title
+  - let bagsid = toShow._id
+  - let bags_name = toShow.bags_name
+  - let bags_type = toShow.bags_type
+  - let bags_cost = toShow.bags_cost
+  div.row(class='mb-2')
+   div.mr-1 ID is
+   div #{bagsid}
+  - let actionid = "/resource/bags/" + bagsid
+  form(id='bagsForm', action= actionid, method="PUT")
+   div.form-group
+     label.bagsAttr(for='bags_name') bags name
+     input#bags_name(type='text', name='bags_name', value= bags_name )
+   div.form-group
+     label.bagsAttr(for='bags_type') bags type
+     input#bags_type(type='text', name='bags_type', value= bags_type )
+   div.form-group
+     label.bagsAttr(for='bags_cost') bags cost
+     input#bags_cost(type='number', name='bags_cost', value= bags_cost )
+   input(type="submit")
+  script.
+   document.forms['bagsForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+     method: 'PUT',
+     body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+     return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+     alert("Update succeded")
+     // TODO handle body
+    }).catch((error) => {
+     // TODO handle error
+     alert("Update failed " + error )
+    });
+   });

@@ -1,0 +1,34 @@
+extends layout
+
+block content
+ h1= title
+
+ form(id='bagsForm', action="/resource/bags", method="POST")
+  div.form-group
+    label.bagsAttr(for='bags_name') bags name
+    input#bags_name(type='text', name='bags_name')
+  div.form-group
+    label.bagsAttr(for='bags_type') bags type
+    input#bags_type(type='text', name='bags_type')
+  div.form-group
+    label.bagsAttr(for='bags_cost') bags cost
+    input#bags_cost(type='number', name='bags_cost')
+  input(type="submit")
+
+ script.
+  document.forms['bagsForm'].addEventListener('submit', (event) => {
+   event.preventDefault();
+   // TODO do something here to show user that form is being submitted
+   fetch(event.target.action, {
+    method: 'POST',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+   }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+   }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+   });
+  });

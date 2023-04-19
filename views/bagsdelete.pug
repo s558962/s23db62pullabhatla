@@ -1,0 +1,49 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+  h2 No instance to delete
+ else
+  - let bagsid = toShow._id
+  - let bags_name = toShow.bags_name
+  - let bags_type = toShow.bags_type
+  - let bags_cost = toShow.bags_cost
+  - let actionid = "/resource/bags/" + bagsid
+  script let actionid = "#{actionid}"
+  div
+   div.row
+    div(class='bagsAttr mr-3') bags ID is:
+    div #{bagsid}
+   div.row
+    div(class='bagsAttr mr-3') bags Size is:
+    div #{bags_name}
+   div.row
+    div(class='bagsAttr mr-3') bags Type is:
+    div #{bags_type}
+   div.row
+    div(class='bagsAttr mr-3') bags Cost is:
+    div #{bags_cost}
+  button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+  button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+ script.
+  function cancel() {
+  // Go back to the home page for the bags collection
+  window.location.href='/bags'
+  }
+ script.
+  function deleteOnid() {
+   console.log("starting delete")
+   // delete first
+   fetch(actionid, {
+    method: 'DELETE' // Don't need a body for the delete
+   }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+    alert("Delete succeded")
+   window.location.href='/bags'
+   // TODO handle body
+   }).catch((error) => {
+   // TODO handle error
+    alert("Delete failed " + error )
+   });
+  }
