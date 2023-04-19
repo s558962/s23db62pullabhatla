@@ -8,6 +8,10 @@ a {
 }
 
 .bagsAttr {
-  background-color: aquamarine;
-  width: 120px;
+  background-color: rgb(255, 127, 219);
+  width: 120px ;
+  border: 2px;
+  padding: 10px 10px 10px 10px;
+  text-align: left;
+  margin: 10px;
   }

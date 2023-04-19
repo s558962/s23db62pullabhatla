@@ -1,20 +1,23 @@
 extends layout
 block content
  h1= title
- - let bagsid = toShow._id
- - let bags_name = toShow.bags_name
- - let bags_type = toShow.bags_type
- - let bags_cost = toShow.bags_cost
- div
-  div.row
-   div(class='bagsAttr mr-3') bags id is:
-   div #{bagsid}
-  div.row
-   div(class='bagsAttr mr-3') bags name is:
-   div #{bags_name}
-  div.row
-   div(class='bagsAttr mr-3') bags type is:
-   div #{bags_type}
-  div.row
-   div(class='bagsAttr mr-3') bags cost is:
-   div #{bags_cost}
+ if (toShow == null)
+  h2 No instance to detail
+ else
+  - let bagsid = toShow._id
+  - let bags_name = toShow.bags_name
+  - let bags_type = toShow.bags_type
+  - let bags_cost = toShow.bags_cost
+  div
+   div.row
+    div(class='bagsAttr mr-3') bags id is:
+    div #{bagsid}
+   div.row
+    div(class='bagsAttr mr-3') bags name is:
+    div #{bags_name}
+   div.row
+    div(class='bagsAttr mr-3') bags type is:
+    div #{bags_type}
+   div.row
+    div(class='bagsAttr mr-3') bags cost is:
+    div #{bags_cost}
