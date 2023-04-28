@@ -21,7 +21,7 @@ block content
      input#bags_type(type='text', name='bags_type', value= bags_type )
    div.form-group
      label.bagsAttr(for='bags_cost') bags cost
-     input#bags_cost(type='number', name='bags_cost', value= bags_cost )
+     input#bags_cost(type='number', name='bags_cost', value= bags_cost,min=10,max=1000 )
    input(type="submit")
   script.
    document.forms['bagsForm'].addEventListener('submit', (event) => {
